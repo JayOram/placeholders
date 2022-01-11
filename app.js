@@ -1,7 +1,10 @@
- var express = require("express"),
+ var express = require('express'),
  app = express(),
  Canvas = require('canvas'),
  canvas, ctx;
+
+var connect = require('connect');
+var http = require('http');
 
 var defaults = {
      format: 'png', // Currently only image/png is supported by node-canvas.
@@ -15,23 +18,23 @@ var defaults = {
 * App config
 */
 
- app.set("views", __dirname + "/views");
- app.set("view engine", "pug");
+//  app.set("views", __dirname + "/views");
+//  app.set("view engine", "pug");
  
- // Built-in middleware
- app.use(express.static(__dirname + "/assets"));
- 
- // 404 page
- app.use(function(req, res, next) {
-     res.status("404");
-     res.render("404", {url: getUrl(req)});
- });
+//  // Built-in middleware
+//  app.use(express.static(__dirname + "/assets"));
 
- // 500 page
- app.use(function(err, req, res, next) {
-     res.status(err.status || 500);
-     res.render("500", {error: err});
- });
+//  // 404 page
+//  app.use(function(req, res, next) {
+//      res.status("404");
+//      res.render("404", {url: getUrl(req)});
+//  });
+
+//  // 500 page
+//  app.use(function(err, req, res, next) {
+//      res.status(err.status || 500);
+//      res.render("500", {error: err});
+//  });
 
 
 /**
@@ -83,7 +86,7 @@ app.get('/:dimension.:format?/:fg_color?/:bg_color?', function(req, res, next) {
  res.setHeader("Expires", exp);
  res.setHeader("Last-Modified", exp);
 
- canvas = new Canvas(w, h);
+ canvas = new Canvas.createCanvas(w, h);
  ctx = canvas.getContext('2d');
  switch(ext) {
      // Currently only image/png is supported by node-canvas.
@@ -122,11 +125,7 @@ app.get('/:dimension.:format?/:fg_color?/:bg_color?', function(req, res, next) {
 
  return 1;
 });
-app.get('/', function(req, res) {
- res.render('index', {
-     url: getUrl(req)
- });
-});
+
 function getUrl(req) {
  var url = 'http://';
 

@@ -1,7 +1,25 @@
 {
   "dependencies": {
     "canvas": "^2.8.0",
+    "connect": "^3.7.0",
     "express": "^4.17.2",
     "pug": "^3.0.2"
-  }
+  },
+  "name": "placeholders",
+  "version": "1.0.0",
+  "description": "Email placeholder images",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JayOram/placeholders.git"
+  },
+  "author": "Jay Oram",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JayOram/placeholders/issues"
+  },
+  "homepage": "https://github.com/JayOram/placeholders#readme"
 }
