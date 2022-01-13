@@ -2,8 +2,6 @@
  app = express(),
  Canvas = require('canvas'),
  canvas, ctx;
-
-var connect = require('connect');
 var http = require('http');
 
 var defaults = {
@@ -13,29 +11,6 @@ var defaults = {
  },
  max_age = 31536000, // How long to cache, via max-age, in seconds.
  exp = new Date(0); // Expire date.
-
-/**
-* App config
-*/
-
-//  app.set("views", __dirname + "/views");
-//  app.set("view engine", "pug");
- 
-//  // Built-in middleware
-//  app.use(express.static(__dirname + "/assets"));
-
-//  // 404 page
-//  app.use(function(req, res, next) {
-//      res.status("404");
-//      res.render("404", {url: getUrl(req)});
-//  });
-
-//  // 500 page
-//  app.use(function(err, req, res, next) {
-//      res.status(err.status || 500);
-//      res.render("500", {error: err});
-//  });
-
 
 /**
 * App routing.
@@ -126,6 +101,28 @@ app.get('/:dimension.:format?/:fg_color?/:bg_color?', function(req, res, next) {
  return 1;
 });
 
+/**
+* App config
+*/
+
+app.set("views", __dirname + "/views");
+app.set("view engine", "pug");
+
+// Built-in middleware
+app.use(express.static(__dirname + "/assets"));
+
+// 404 page
+app.use(function(req, res, next) {
+    res.status("404");
+    res.render("404", {url: getUrl(req)});
+});
+
+// 500 page
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render("500", {error: err});
+});
+
 function getUrl(req) {
  var url = 'http://';
 
@@ -135,10 +132,10 @@ function getUrl(req) {
  return url;
 }
 
-/**
-* Start app
-*/
-app.listen(3000, function() {
- console.log("Listening on port 3000");
- console.log(defaults)
-});
+// /**
+// * Start app
+// */
+// app.listen(3000, function() {
+//  console.log("Listening on port 3000");
+//  console.log(defaults)
+// });
