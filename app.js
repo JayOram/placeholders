@@ -2,7 +2,7 @@
  app = express(),
  Canvas = require('canvas'),
  canvas, ctx;
-var http = require('http');
+
 
 var defaults = {
      format: 'png', // Currently only image/png is supported by node-canvas.
