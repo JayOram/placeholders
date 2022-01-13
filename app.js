@@ -135,6 +135,6 @@ function getUrl(req) {
 /**
 * Start app
 */
-app.listen(app.listen(process.env.PORT || 3000, 
-	() => console.log("Server is running..."))
+app.listen(process.env.PORT || 3000, 
+	() => console.log("Server is running...")
     );
