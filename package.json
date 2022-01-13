@@ -9,7 +9,6 @@
   "version": "1.0.0",
   "description": "Email placeholder images",
   "main": "app.js",
-  "subdomain": "https://email-placeholder.herokuapp.com/",
   "scripts": {
     "start": "app.js"
   },
